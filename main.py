@@ -82,8 +82,6 @@ class MainWindow(QtWidgets.QMainWindow):
         self.proxy = QtCore.QSortFilterProxyModel(self)
         self.proxy.setSourceModel(self.model)
         self.proxy.setFilterKeyColumn(-1) #All collumns
-        self.proxy.filterCaseSensitivity = False
-        #self.proxy.setFilterRegExp(QRegExp(".png", Qt.CaseInsensitive, QRegExp.FixedString))
 
         self.table.setModel(self.proxy)
         self.table.setSortingEnabled(True)
