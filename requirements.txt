@@ -1,0 +1,5 @@
+pycryptodome==3.19.0
+PySide2==5.15.2.1
+shiboken2==5.15.2.1
+tinydb==4.8.0
+tinydb-encrypted-jsonstorage==0.1.2
