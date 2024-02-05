@@ -82,6 +82,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.proxy = QtCore.QSortFilterProxyModel(self)
         self.proxy.setSourceModel(self.model)
         self.proxy.setFilterKeyColumn(-1) #All collumns
+        self.proxy.filterCaseSensitivity = False
         #self.proxy.setFilterRegExp(QRegExp(".png", Qt.CaseInsensitive, QRegExp.FixedString))
 
         self.table.setModel(self.proxy)
@@ -89,7 +90,7 @@ class MainWindow(QtWidgets.QMainWindow):
         
         self.layout = QtWidgets.QVBoxLayout()
         self.line_edit = QtWidgets.QLineEdit()
-        self.line_edit.textChanged.connect(self.proxy.setFilterRegExp)
+        self.line_edit.textChanged.connect(self.filter)
         self.layout.addWidget(self.line_edit)
         self.layout.addWidget(self.table)
 
@@ -97,6 +98,9 @@ class MainWindow(QtWidgets.QMainWindow):
         self.widget.setLayout(self.layout)
         self.setCentralWidget(self.widget)
 
+    def filter(self, textChanged):
+        self.proxy.setFilterRegExp(QRegExp(textChanged, Qt.CaseInsensitive, QRegExp.FixedString))
+        
 
 app=QtWidgets.QApplication(sys.argv)
 window=MainWindow()
